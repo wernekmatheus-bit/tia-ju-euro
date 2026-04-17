@@ -19,9 +19,12 @@ export default function ContactFormSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-    alert('Mensagem enviada com sucesso!');
+    
+    const textoMensagem = `Olá! Gostaria de entrar em contato.\n\n*Nome:* ${formData.nome}\n*E-mail:* ${formData.email || 'Não informado'}\n*Telefone:* ${formData.telefone}\n*Mensagem:* ${formData.mensagem || 'Não informada'}`;
+    const urlWpp = `https://wa.me/5541999617630?text=${encodeURIComponent(textoMensagem)}`;
+    
+    window.open(urlWpp, '_blank');
+    
     setFormData({ nome: '', email: '', telefone: '', mensagem: '' });
   };
 
